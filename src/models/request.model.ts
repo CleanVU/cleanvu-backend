@@ -7,7 +7,7 @@ import type { RequestDocument } from '../interfaces/request.interface';
  * This schema is used to store the request information.
  *
  * @param {string} studentId - The id of the student.
- * @param {string} details - The details of the request.
+ * @param {string} description - The description of the request.
  * @param {string} status - The status of the request.
  * @param {Date} estimatedCompletion - The estimated completion date of the request.
  * @param {string} location - The location of the request.
@@ -23,7 +23,7 @@ const requestSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    details: {
+    description: {
       type: String,
       required: true,
     },
@@ -57,7 +57,7 @@ const requestSchema = new mongoose.Schema(
  * This schema is used to store the request information.
  *
  * @param {string} studentId - The id of the student.
- * @param {string} details - The details of the request.
+ * @param {string} description - The description of the request.
  * @param {string} status - The status of the request.
  * @param {Date} estimatedCompletion - The estimated completion date of the request.
  * @param {string} location - The location of the request.

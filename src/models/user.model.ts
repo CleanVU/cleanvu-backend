@@ -9,7 +9,7 @@ import type { UserDocument } from '../interfaces/user.interface';
  * @param {string} email - The email of the user.
  * @param {string} role - The role of the user.
  * @param {string} building - The building of the user.
- * @param {number} floor - The floor of the user.
+ * @param {string} floor - The floor of the user.
  * @param {string} createdAt - The date the user was created.
  * @param {string} updatedAt - The date the user was updated.
  * @param {string} _id - The id of the user.
@@ -33,7 +33,7 @@ const userSchema = new mongoose.Schema(
       ref: 'Building',
     },
     floor: {
-      type: Number,
+      type: String,
     },
   },
   {
@@ -49,7 +49,7 @@ const userSchema = new mongoose.Schema(
  * @param {string} email - The email of the user.
  * @param {string} role - The role of the user.
  * @param {string} building - The building of the user.
- * @param {number} floor - The floor of the user.
+ * @param {string} floor - The floor of the user.
  * @param {string} createdAt - The date the user was created.
  * @param {string} updatedAt - The date the user was updated.
  * @param {string} _id - The id of the user.

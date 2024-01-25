@@ -9,7 +9,7 @@ import type { LocationDocument } from '../interfaces/location.interface';
  *
  * @param {string} room - The room of the location.
  * @param {string} roomDescription - The room description of the location.
- * @param {number} floor - The floor of the location.
+ * @param {string} floor - The floor of the location.
  * @param {Date} lastCleaned - The date the location was last cleaned.
  * @param {string} createdAt - The date the location was created.
  * @param {string} updatedAt - The date the location was updated.
@@ -55,7 +55,7 @@ const locationSchema = new mongoose.Schema(
  *
  * @param {string} room - The room of the location.
  * @param {string} roomDescription - The room description of the location.
- * @param {number} floor - The floor of the location.
+ * @param {string} floor - The floor of the location.
  * @param {Date} lastCleaned - The date the location was last cleaned.
  * @param {string} createdAt - The date the location was created.
  * @param {string} updatedAt - The date the location was updated.

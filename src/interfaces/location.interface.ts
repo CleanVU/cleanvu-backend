@@ -4,7 +4,7 @@ import type { RequestDocument } from './request.interface';
 export interface LocationDocument extends mongoose.Document {
   room: string;
   roomDescription?: string;
-  floor: number;
+  floor: string;
   lastCleaned: Date;
   requests: RequestDocument[];
 }

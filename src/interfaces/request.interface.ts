@@ -5,7 +5,7 @@ import type mongoose from 'mongoose';
 /* eslint-disable autofix/no-unused-vars */
 export interface RequestDocument extends mongoose.Document {
   studentId: string;
-  details: string;
+  description: string;
   status: RequestStatus;
   estimatedCompletion?: string;
   location: LocationDocument | string;
