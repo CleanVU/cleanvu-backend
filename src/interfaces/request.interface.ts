@@ -7,6 +7,8 @@ export interface RequestDocument extends mongoose.Document {
   studentId: string;
   description: string;
   status: RequestStatus;
+  createdAt: Date;
+  updatedAt: Date;
   estimatedCompletion?: string;
   location: LocationDocument | string;
   building: BuildingDocument | string;

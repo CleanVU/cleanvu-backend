@@ -15,6 +15,10 @@ const buildingSchema = new mongoose.Schema(
       unique: true,
       index: true,
     },
+    floors: {
+      type: [String],
+      required: true,
+    },
     locations: [
       {
         type: Schema.Types.ObjectId,
