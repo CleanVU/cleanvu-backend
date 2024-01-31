@@ -80,7 +80,19 @@ describe('request', () => {
         .get(`/api/location/${location._id}`)
         .expect(200);
 
-      expect(locationResponse.body.requests).toEqual([response.body._id]);
+      expect(locationResponse.body.requests).toEqual([
+        {
+          _id: response.body._id,
+          description: testRequestInput.description,
+          status: testRequestInput.status,
+          createdAt: expect.any(String),
+          updatedAt: expect.any(String),
+          building: building._id.toString(),
+          location: location._id.toString(),
+          studentId: user._id.toString(),
+          __v: expect.any(Number),
+        },
+      ]);
     });
   });
 

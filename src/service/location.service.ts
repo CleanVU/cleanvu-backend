@@ -34,7 +34,7 @@ export const createLocation = async (input: CreateLocationInput['body']) => {
  * @returns {Promise<LocationDocument>} The location document.
  */
 export const getLocation = async (locationId: string) => {
-  const location = await LocationModel.findById(locationId); //.populate('requests');
+  const location = await LocationModel.findById(locationId).populate('requests');
 
   return location;
 };
@@ -49,8 +49,8 @@ export const getLocation = async (locationId: string) => {
 export const getLocations = async (count: number, page: number) => {
   const locations = await LocationModel.find()
     .limit(count)
-    .skip((page - 1) * count);
-  //.populate('requests');
+    .skip((page - 1) * count)
+    .populate('requests');
 
   return locations;
 };
