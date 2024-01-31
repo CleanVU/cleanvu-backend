@@ -39,6 +39,20 @@ import {
   getLocationsSchema,
   updateLocationSchema,
 } from '../schema/location.schema';
+import {
+  getRequestHandler,
+  createRequestHandler,
+  getRequestsHandler,
+  updateRequestHandler,
+  deleteRequestHandler,
+} from '../controllers/request.controller';
+import {
+  getRequestSchema,
+  createRequestSchema,
+  getRequestsSchema,
+  updateRequestSchema,
+  deleteRequestSchema,
+} from '../schema/request.schema';
 import type { Express, Request, Response } from 'express';
 
 const routes = (app: Express) => {
@@ -95,6 +109,25 @@ const routes = (app: Express) => {
     '/api/location/:locationId',
     validate(deleteLocationSchema),
     deleteLocationHandler
+  );
+
+  // request routes
+  app.get(
+    '/api/request/:requestId',
+    validate(getRequestSchema),
+    getRequestHandler
+  );
+  app.post('/api/request', validate(createRequestSchema), createRequestHandler);
+  app.get('/api/requests', validate(getRequestsSchema), getRequestsHandler);
+  app.put(
+    '/api/request/:requestId',
+    validate(updateRequestSchema),
+    updateRequestHandler
+  );
+  app.delete(
+    '/api/request/:requestId',
+    validate(deleteRequestSchema),
+    deleteRequestHandler
   );
 
   // 404

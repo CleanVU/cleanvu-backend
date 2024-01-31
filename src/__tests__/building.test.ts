@@ -149,19 +149,7 @@ describe('building', () => {
         createTestBuildingInput()
       );
 
-      const response = await supertest(app)
-        .delete(`/api/building/${building._id}`)
-        .expect(200);
-
-      expect(response.body).toEqual({
-        _id: building._id.toString(),
-        name: building.name,
-        floors: building.floors,
-        locations: [],
-        createdAt: building.createdAt.toISOString(),
-        updatedAt: building.updatedAt.toISOString(),
-        __v: building.__v,
-      });
+      await supertest(app).delete(`/api/building/${building._id}`).expect(204);
 
       const deletedBuilding = await getBuilding(building._id);
 

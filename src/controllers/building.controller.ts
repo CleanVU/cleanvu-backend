@@ -166,5 +166,5 @@ export const deleteBuildingHandler = async (
       },
     ]);
 
-  return res.status(200).send(building);
+  return res.status(204).send();
 };

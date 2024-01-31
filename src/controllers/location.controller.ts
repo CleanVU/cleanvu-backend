@@ -149,5 +149,5 @@ export const deleteLocationHandler = async (
     ]);
   }
 
-  return res.status(200).send(location);
+  return res.status(204).send();
 };

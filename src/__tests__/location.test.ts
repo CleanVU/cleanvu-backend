@@ -183,21 +183,7 @@ describe('location', () => {
         buildingId: building._id,
       });
 
-      const response = await supertest(app)
-        .delete(`/api/location/${location._id}`)
-        .expect(200);
-
-      expect(response.body).toEqual({
-        _id: location._id.toString(),
-        name: location.name,
-        description: location.description,
-        floor: location.floor,
-        lastCleaned: location.lastCleaned.toISOString(),
-        requests: [],
-        createdAt: location.createdAt.toISOString(),
-        updatedAt: location.updatedAt.toISOString(),
-        __v: location.__v,
-      });
+      await supertest(app).delete(`/api/location/${location._id}`).expect(204);
     });
   });
 });

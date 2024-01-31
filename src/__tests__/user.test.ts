@@ -7,7 +7,7 @@ import { faker } from '@faker-js/faker';
 
 const app = configureServer();
 
-const createTestUserInput = () => ({
+export const createTestUserInput = () => ({
   email: faker.internet.email(),
   role: 'custodian',
   building: new mongoose.Types.ObjectId().toString(),
@@ -41,6 +41,7 @@ describe('user', () => {
         role: testUserInput.role,
         building: testUserInput.building,
         floor: testUserInput.floor,
+        requests: [],
         createdAt: expect.any(String),
         updatedAt: expect.any(String),
         __v: expect.any(Number),
@@ -64,6 +65,7 @@ describe('user', () => {
         role: testUserInput.role,
         building: testUserInput.building,
         floor: testUserInput.floor,
+        requests: [],
         createdAt: expect.any(String),
         updatedAt: expect.any(String),
         __v: expect.any(Number),
@@ -89,6 +91,7 @@ describe('user', () => {
         _id: expect.any(String),
         email: testUserInput.email,
         role: 'student',
+        requests: [],
         building: testUserInput.building,
         floor: testUserInput.floor,
         createdAt: expect.any(String),

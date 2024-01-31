@@ -35,6 +35,13 @@ const userSchema = new mongoose.Schema(
     floor: {
       type: String,
     },
+    requests: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Request',
+        default: [],
+      },
+    ],
   },
   {
     timestamps: true,
