@@ -1,7 +1,7 @@
 import { createTestBuildingInput } from './building.test';
 import { configureServer } from '../config/server.config';
 import { createLocation } from '../service/location.service';
-import { createBuilding } from '../service/building.service';
+import { createBuilding, getBuilding } from '../service/building.service';
 import LocationModel from '../models/location.model';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
@@ -32,11 +32,13 @@ describe('location', () => {
     it('should create a location', async () => {
       const testLocationInput = createTestLocationInput();
 
+      const building = await createBuilding(createTestBuildingInput());
+
       const response = await supertest(app)
         .post('/api/location')
         .send({
           ...testLocationInput,
-          buildingId: (await createBuilding(createTestBuildingInput()))._id,
+          buildingId: building._id,
         })
         .expect(201);
 
@@ -51,6 +53,14 @@ describe('location', () => {
         updatedAt: expect.any(String),
         __v: expect.any(Number),
       });
+
+      // check that the id is in the building
+      const newBuilding = await getBuilding(building._id);
+
+      // array should have id
+      expect(
+        newBuilding?.locations.map(location => location.toString())
+      ).toContain(response.body._id);
     });
   });
 
