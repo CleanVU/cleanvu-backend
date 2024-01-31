@@ -5,10 +5,10 @@ import type { LocationDocument } from '../interfaces/location.interface';
  * Location Schema
  *
  * This schema is used to store the building information.
- *  * Location can be a room in a building or anything like that.
+ * Location can be a room in a building or anything like that.
  *
- * @param {string} room - The room of the location.
- * @param {string} roomDescription - The room description of the location.
+ * @param {string} name - The name of the location.
+ * @param {string} description - The description of the location.
  * @param {string} floor - The floor of the location.
  * @param {Date} lastCleaned - The date the location was last cleaned.
  * @param {string} createdAt - The date the location was created.
@@ -18,17 +18,17 @@ import type { LocationDocument } from '../interfaces/location.interface';
  */
 const locationSchema = new mongoose.Schema(
   {
-    room: {
+    name: {
       type: String,
       required: true,
       unique: true,
       index: true,
     },
-    roomDescription: {
+    description: {
       type: String,
     },
     floor: {
-      type: Number,
+      type: String,
       required: true,
     },
     lastCleaned: {
@@ -53,8 +53,8 @@ const locationSchema = new mongoose.Schema(
  * This model is used to store the location information.
  * Location can be a room in a building or anything like that.
  *
- * @param {string} room - The room of the location.
- * @param {string} roomDescription - The room description of the location.
+ * @param {string} name - The name of the location.
+ * @param {string} description - The description of the location.
  * @param {string} floor - The floor of the location.
  * @param {Date} lastCleaned - The date the location was last cleaned.
  * @param {string} createdAt - The date the location was created.

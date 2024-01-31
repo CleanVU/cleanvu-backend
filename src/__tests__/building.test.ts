@@ -1,5 +1,6 @@
 import { configureServer } from '../config/server.config';
 import { createBuilding, getBuilding } from '../service/building.service';
+import BuildingModel from '../models/building.model';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
 import supertest from 'supertest';
@@ -76,6 +77,8 @@ describe('building', () => {
 
   describe('GET /api/buildings/', () => {
     it('should get all buildings', async () => {
+      await BuildingModel.deleteMany({});
+
       const building1: BuildingDocument = await createBuilding(
         createTestBuildingInput()
       );

@@ -25,6 +25,20 @@ import {
   getBuildingsHandler,
   updateBuildingHandler,
 } from '../controllers/building.controller';
+import {
+  getLocationHandler,
+  createLocationHandler,
+  getLocationsHandler,
+  updateLocationHandler,
+  deleteLocationHandler,
+} from '../controllers/location.controller';
+import {
+  createLocationSchema,
+  deleteLocationSchema,
+  getLocationSchema,
+  getLocationsSchema,
+  updateLocationSchema,
+} from '../schema/location.schema';
 import type { Express, Request, Response } from 'express';
 
 const routes = (app: Express) => {
@@ -59,6 +73,29 @@ const routes = (app: Express) => {
     deleteBuildingHandler
   );
   app.get('/api/buildings', validate(getBuildingsSchema), getBuildingsHandler);
+
+  // location endpoints
+  app.get(
+    '/api/location/:locationId',
+    validate(getLocationSchema),
+    getLocationHandler
+  );
+  app.post(
+    '/api/location',
+    validate(createLocationSchema),
+    createLocationHandler
+  );
+  app.get('/api/locations', validate(getLocationsSchema), getLocationsHandler);
+  app.put(
+    '/api/location/:locationId',
+    validate(updateLocationSchema),
+    updateLocationHandler
+  );
+  app.delete(
+    '/api/location/:locationId',
+    validate(deleteLocationSchema),
+    deleteLocationHandler
+  );
 
   // 404
   app.use((_: Request, res: Response) => {
