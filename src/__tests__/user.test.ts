@@ -10,8 +10,6 @@ const app = configureServer();
 export const createTestUserInput = () => ({
   email: faker.internet.email(),
   role: 'custodian',
-  building: new mongoose.Types.ObjectId().toString(),
-  floor: '1',
 });
 
 describe('user', () => {
@@ -39,8 +37,6 @@ describe('user', () => {
         _id: expect.any(String),
         email: testUserInput.email,
         role: testUserInput.role,
-        building: testUserInput.building,
-        floor: testUserInput.floor,
         requests: [],
         createdAt: expect.any(String),
         updatedAt: expect.any(String),
@@ -63,8 +59,6 @@ describe('user', () => {
         _id: expect.any(String),
         email: testUserInput.email,
         role: testUserInput.role,
-        building: testUserInput.building,
-        floor: testUserInput.floor,
         requests: [],
         createdAt: expect.any(String),
         updatedAt: expect.any(String),
@@ -79,21 +73,24 @@ describe('user', () => {
 
       const user = await createUser(testUserInput);
 
+      const buildingId = new mongoose.Types.ObjectId().toString();
+
       const response = await supertest(app)
         .put(`/api/user/${user._id}`)
         .send({
           ...testUserInput,
-          role: 'student',
+          building: buildingId,
+          floor: '3',
         })
         .expect(200);
 
       expect(response.body).toEqual({
         _id: expect.any(String),
         email: testUserInput.email,
-        role: 'student',
+        role: 'custodian',
         requests: [],
-        building: testUserInput.building,
-        floor: testUserInput.floor,
+        building: buildingId,
+        floor: '3',
         createdAt: expect.any(String),
         updatedAt: expect.any(String),
         __v: expect.any(Number),

@@ -10,15 +10,15 @@ const payload = {
     role: string({
       required_error: 'Role is required',
     }),
-    building: string({
-      required_error: 'Building is required',
-    }).refine(val => mongoose.Types.ObjectId.isValid(val), {
-      message: 'Invalid building id',
-      path: ['building'],
-    }),
+    building: string()
+      .refine(val => mongoose.Types.ObjectId.isValid(val), {
+        message: 'Invalid building id',
+        path: ['building'],
+      })
+      .optional(),
     floor: string({
       required_error: 'Floor is required',
-    }),
+    }).optional(),
   }),
 };
 

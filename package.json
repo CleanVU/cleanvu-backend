@@ -6,6 +6,8 @@
   "scripts": {
     "start": "nodemon src/index.ts",
     "test": "jest --detectOpenHandles",
+    "test:coverage": "jest --coverage --detectOpenHandles",
+    "seed": "ts-node src/scripts/seed.ts",
     "typescript:check": "tsc --esModuleInterop",
     "lint:check": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "prettier:format": "prettier --write '**/*.{js,jsx,ts,tsx,json,css,scss,md}'",
