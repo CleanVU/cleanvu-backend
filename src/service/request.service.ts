@@ -89,6 +89,7 @@ export const updateRequest = async (
       location: input.locationId,
       building: input.buildingId,
       status: input.status,
+      estimatedCompletion: input.estimatedCompletion || undefined,
     },
     { new: true }
   )

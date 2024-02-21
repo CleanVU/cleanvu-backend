@@ -18,6 +18,7 @@ const payload = {
     buildingId: string({
       required_error: 'Building ID is required',
     }),
+    estimatedCompletion: string().optional(),
   }),
 };
 
