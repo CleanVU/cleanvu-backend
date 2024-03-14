@@ -30,6 +30,14 @@ const params = {
   }),
 };
 
+const userParams = {
+  params: object({
+    userId: string({
+      required_error: 'User ID is required',
+    }),
+  }),
+};
+
 const query = {
   query: object({
     count: string({ required_error: 'Count is required' }).refine(
@@ -70,8 +78,13 @@ export const deleteRequestSchema = object({
   ...params,
 });
 
+export const getRequestByUserIdSchema = object({
+  ...userParams,
+});
+
 export type CreateRequestInput = TypeOf<typeof createRequestSchema>;
 export type GetRequestInput = TypeOf<typeof getRequestSchema>;
 export type GetRequestsInput = TypeOf<typeof getRequestsSchema>;
 export type UpdateRequestInput = TypeOf<typeof updateRequestSchema>;
 export type DeleteRequestInput = TypeOf<typeof deleteRequestSchema>;
+export type GetRequestByUserIdInput = TypeOf<typeof getRequestByUserIdSchema>;

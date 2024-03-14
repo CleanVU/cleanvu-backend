@@ -45,6 +45,7 @@ import {
   getRequestsHandler,
   updateRequestHandler,
   deleteRequestHandler,
+  getRequestByUserIdHandler,
 } from '../controllers/request.controller';
 import {
   getRequestSchema,
@@ -52,6 +53,7 @@ import {
   getRequestsSchema,
   updateRequestSchema,
   deleteRequestSchema,
+  getRequestByUserIdSchema,
 } from '../schema/request.schema';
 import type { Express, Request, Response } from 'express';
 
@@ -128,6 +130,11 @@ const routes = (app: Express) => {
     '/api/request/:requestId',
     validate(deleteRequestSchema),
     deleteRequestHandler
+  );
+  app.get(
+    '/api/requests/:userId',
+    validate(getRequestByUserIdSchema),
+    getRequestByUserIdHandler
   );
 
   // 404
