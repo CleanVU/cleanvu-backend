@@ -19,6 +19,9 @@ const payload = {
     floor: string({
       required_error: 'Floor is required',
     }).optional(),
+    userId: string({
+      required_error: 'User ID is required',
+    }).optional(),
   }),
 };
 
