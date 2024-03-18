@@ -16,7 +16,12 @@ dotenv.config();
  * @returns {Promise<UserModel>} A promise that resolves with the created user
  */
 export const createUser = async (input: CreateUserInput['body']) => {
-  const newUser = new UserModel(input);
+  const newUser = new UserModel({
+    email: input.email,
+    role: input.role,
+    building: input.building,
+    floor: input.floor,
+  });
 
   if (
     process.env.ENVIRONMENT !== 'test' &&
