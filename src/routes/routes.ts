@@ -62,7 +62,7 @@ const routes = (app: Express) => {
   app.get('/healthcheck', (_: Request, res: Response) => res.sendStatus(200));
 
   // user endpoints
-  app.get('/api/user/:userId', validate(getUserSchema), getUserHandler);
+  app.get('/api/user', validate(getUserSchema), getUserHandler);
   app.post('/api/user', validate(createUserSchema), createUserHandler);
   app.put('/api/user/:userId', validate(updateUserSchema), updateUserHandler);
   app.delete('/api/user/:userId', validate(deleteUserSchema), deleteUserHandler);

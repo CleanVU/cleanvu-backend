@@ -70,7 +70,7 @@ describe('request', () => {
 
       // check user object
       const userResponse = await supertest(app)
-        .get(`/api/user/${user._id}`)
+        .get(`/api/user?email=${user.email}`)
         .expect(200);
 
       expect(userResponse.body.requests).toEqual([response.body._id]);

@@ -10,6 +10,7 @@ const app = configureServer();
 export const createTestUserInput = () => ({
   email: faker.internet.email(),
   role: 'custodian',
+  userId: new mongoose.Types.ObjectId().toString(),
 });
 
 describe('user', () => {
@@ -52,7 +53,7 @@ describe('user', () => {
       const user = await createUser(testUserInput);
 
       const response = await supertest(app)
-        .get(`/api/user/${user._id}`)
+        .get(`/api/user?email=${user.email}`)
         .expect(200);
 
       expect(response.body).toEqual({

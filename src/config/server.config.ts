@@ -3,6 +3,8 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
+import dotenv from 'dotenv';
+dotenv.config();
 
 /**
  * Configure Server
@@ -23,7 +25,7 @@ export const configureServer = () => {
   app.disable('x-powered-by');
 
   // Logging
-  if (process.env.ENVIRONMENT === 'test') {
+  if (process.env.ENVIRONMENT === 'development') {
     app.use(morgan('dev'));
   }
 

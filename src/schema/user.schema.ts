@@ -21,7 +21,7 @@ const payload = {
     }).optional(),
     userId: string({
       required_error: 'User ID is required',
-    }).optional(),
+    }),
   }),
 };
 
@@ -33,12 +33,20 @@ const params = {
   }),
 };
 
+const query = {
+  query: object({
+    email: string({
+      required_error: 'Email is required',
+    }),
+  }),
+};
+
 export const createUserSchema = object({
   ...payload,
 });
 
 export const getUserSchema = object({
-  ...params,
+  ...query,
 });
 
 export const updateUserSchema = object({

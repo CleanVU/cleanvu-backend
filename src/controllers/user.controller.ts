@@ -6,6 +6,7 @@ import {
 } from '../service/user.service';
 import type {
   CreateUserInput,
+  DeleteUserInput,
   GetUserInput,
   UpdateUserInput,
 } from '../schema/user.schema';
@@ -23,12 +24,12 @@ import type { Request, Response } from 'express';
  * @returns 404 - user was not found
  */
 export const getUserHandler = async (
-  req: Request<GetUserInput['params'], object, object>,
+  req: Request<object, GetUserInput['query'], object>,
   res: Response
 ) => {
-  const { userId } = req.params;
+  const { email } = req.query;
 
-  const user = await getUser(userId);
+  const user = await getUser(email as string);
 
   if (!user)
     return res.status(404).send([
@@ -105,7 +106,7 @@ export const updateUserHandler = async (
  * @returns 204 - no content
  */
 export const deleteUserHandler = async (
-  req: Request<GetUserInput['params'], object, object>,
+  req: Request<DeleteUserInput['params'], object, object>,
   res: Response
 ) => {
   const { userId } = req.params;

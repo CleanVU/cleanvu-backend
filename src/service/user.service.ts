@@ -1,10 +1,13 @@
 import UserModel from '../models/user.model';
+import { clerkClient } from '@clerk/clerk-sdk-node';
+import dotenv from 'dotenv';
 import type {
   CreateUserInput,
   DeleteUserInput,
   GetUserInput,
   UpdateUserInput,
 } from '../schema/user.schema';
+dotenv.config();
 
 /**
  * Create a new user
@@ -14,6 +17,17 @@ import type {
  */
 export const createUser = async (input: CreateUserInput['body']) => {
   const newUser = new UserModel(input);
+
+  if (
+    process.env.ENVIRONMENT !== 'test' &&
+    process.env.ENVIRONMENT !== 'development'
+  ) {
+    await clerkClient.users.updateUserMetadata(input.userId, {
+      publicMetadata: {
+        role: input.role,
+      },
+    });
+  }
 
   await newUser.save();
 
@@ -26,8 +40,8 @@ export const createUser = async (input: CreateUserInput['body']) => {
  * @param {GetUserInput['params']['userId']} userId The user id
  * @returns {Promise<UserModel>} A promise that resolves with the user or null if not found
  */
-export const getUser = async (userId: GetUserInput['params']['userId']) => {
-  const user = UserModel.findById(userId);
+export const getUser = async (email: GetUserInput['query']['email']) => {
+  const user = UserModel.findOne({ email: email });
 
   if (!user) return null;
 
