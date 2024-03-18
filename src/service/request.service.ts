@@ -112,3 +112,19 @@ export const deleteRequest = async (id: string) => {
 
   return request;
 };
+
+/**
+ * Get Requests by User ID
+ *
+ * This function is used to get all requests by user id.
+ *
+ * @param {string} userId - The id of the user.
+ * @returns {Promise<RequestDocument[]>} All requests.
+ */
+export const getRequestsByUser = async (userId: string) => {
+  const requests = await RequestModel.find({ studentId: userId })
+    .populate('location')
+    .populate('building');
+
+  return requests;
+};

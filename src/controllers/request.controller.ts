@@ -3,6 +3,7 @@ import {
   deleteRequest,
   getRequest,
   getRequests,
+  getRequestsByUser,
   updateRequest,
 } from '../service/request.service';
 import type {
@@ -11,6 +12,7 @@ import type {
   GetRequestsInput,
   UpdateRequestInput,
   DeleteRequestInput,
+  GetRequestByUserIdInput,
 } from '../schema/request.schema';
 import type { Request, Response } from 'express';
 
@@ -148,4 +150,26 @@ export const deleteRequestHandler = async (
   }
 
   return res.status(204).send();
+};
+
+/**
+ * Get Request By User Handler
+ *
+ * @description Gets all requests by user id
+ *
+ * @param req Request
+ * @param res Response
+ * @returns 200 - request object
+ * @returns 400 - invalid request id
+ * @returns 404 - request was not found
+ */
+export const getRequestByUserIdHandler = async (
+  req: Request<GetRequestByUserIdInput['params'], object, object>,
+  res: Response
+) => {
+  const { userId } = req.params;
+
+  const requests = await getRequestsByUser(userId);
+
+  return res.status(200).send(requests);
 };
