@@ -23,10 +23,7 @@ export const createUser = async (input: CreateUserInput['body']) => {
     floor: input.floor,
   });
 
-  if (
-    process.env.ENVIRONMENT !== 'test' &&
-    process.env.ENVIRONMENT !== 'development'
-  ) {
+  if (process.env.ENVIRONMENT !== 'test') {
     await clerkClient.users.updateUserMetadata(input.userId, {
       publicMetadata: {
         role: input.role,
