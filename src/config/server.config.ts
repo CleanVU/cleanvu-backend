@@ -25,7 +25,11 @@ export const configureServer = () => {
   app.disable('x-powered-by');
 
   // Logging
-  if (process.env.ENVIRONMENT === 'development') {
+  if (
+    process.env.ENVIRONMENT === 'development' ||
+    process.env.ENVIRONMENT === 'seed' ||
+    process.env.ENVIRONMENT === 'test'
+  ) {
     app.use(morgan('dev'));
   }
 
