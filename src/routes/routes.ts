@@ -75,12 +75,7 @@ const routes = (app: Express) => {
 
   // user endpoints
   app.get('/api/user', validateAuth, validate(getUserSchema), getUserHandler);
-  app.post(
-    '/api/user',
-    validateAuth,
-    validate(createUserSchema),
-    createUserHandler
-  );
+  app.post('/api/user', validate(createUserSchema), createUserHandler);
   app.put(
     '/api/user/:userId',
     validateAuth,
